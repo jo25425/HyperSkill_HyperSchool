@@ -1,0 +1,22 @@
+{% extends 'schedule/base.html' %}
+
+{% block content %}
+    <p>Hi! 👋 Welcome to the site of our online HyperSchool!<br/>
+    Have a look below to find courses you might be interested in :)</p>
+
+    <form action={% url 'courses' %} method="get">
+        {% csrf_token %}
+        <input name="q" type="search"/>
+        <button type="submit">search</button>
+    </form>
+
+    <p>{{num_courses}} courses</p>
+
+    <ul>
+      {% for course in course_list %}
+      <li>
+        <a href="{{ course.get_absolute_url }}">{{ course.title }}</a> ({{course.list_teachers}})
+      </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

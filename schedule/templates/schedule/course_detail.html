@@ -1,0 +1,13 @@
+{% extends 'schedule/base.html' %}
+
+{% block content %}
+    <h3>{{course.title}}</h3>
+
+    <div>
+        <p>Duration: {{course.duration_months}} months</p>
+        <p>Price: {{course.price}}€</p>
+        <p>Teacher: {{course.list_teachers}}</p>
+    </div>
+
+    <p>{{course.info}}</p>
+{% endblock %}
