@@ -15,9 +15,13 @@
             </li>
             {% endfor %}
         </ul>
+        <div>
+            <b>Join us!</b><br/>
+            <a href="{% url 'student-create' %}">Apply to a course</a>
+        </div>
     </div>
 
     <br/>
 
-    <div><a href="/schedule/main/" >Back to the list of courses</a></div>
+    <div><a href="{% url 'main' %}" >Back to the list of courses</a></div>
 {% endblock %}

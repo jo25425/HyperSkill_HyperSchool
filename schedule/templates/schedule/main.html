@@ -4,7 +4,7 @@
     <p>Hi! 👋 Welcome to the site of our online HyperSchool!<br/>
     Have a look below to find courses you might be interested in :)</p>
 
-    <form action={% url 'courses' %} method="get">
+    <form action={% url 'main' %} method="get">
         {% csrf_token %}
         <input name="q" type="search"/>
         <button type="submit">search</button>
