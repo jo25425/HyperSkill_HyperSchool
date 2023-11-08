@@ -1,23 +1,26 @@
 {% extends 'schedule/base.html' %}
 
 {% block content %}
-    <h2>{{teacher.name}}</h2>
-    <h2>{{teacher.surname}}</h2>
+    <section>
+        <h2>{{teacher.name}}</h2>
+        <h2>{{teacher.surname}}</h2>
 
-    <div>
-        <p>Age: {{teacher.age}} years old</p>
-        <p><em>{{teacher.about}}</em></p>
-        <p>Courses taught:</p>
-        <ul>
-            {% for course in teacher.course_set.all %}
-            <li>
-                <a href="{{ course.get_absolute_url }}">{{ course }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+        <div>
+            <p>Age: {{teacher.age}} years old</p>
+            <p><em>{{teacher.about}}</em></p>
+            <p>Courses taught:</p>
+            <ul>
+                {% for course in teacher.course_set.all %}
+                <li>
+                    <a href="{{ course.get_absolute_url }}">{{ course }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <br/>
+    </section>
 
-    <br/>
-
-    <div><a href="{% url 'main' %}">Back to the list of courses</a></div>
+    <nav>
+        <div><a href="{% url 'main' %}" >Back to the list of courses</a></div>
+    </nav>
 {% endblock %}

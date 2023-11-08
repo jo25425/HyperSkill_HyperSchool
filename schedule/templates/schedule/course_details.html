@@ -1,27 +1,41 @@
 {% extends 'schedule/base.html' %}
 
 {% block content %}
-    <h2>{{course.title}}</h2>
+    <section>
+        <h2>{{course.title}}</h2>
 
-    <div>
-        <p>Duration: {{course.duration_months}} months</p>
-        <p>Price: {{course.price}}€</p>
-        <p><em>{{course.info}}</em></p>
-        <p>Teachers for this course:</p>
-        <ul>
-            {% for teacher in course.teacher.all %}
-            <li>
-                <a href="{{ teacher.get_absolute_url }}">{{ teacher }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <div>
+            <p>Duration: {{course.duration_months}} months</p>
+            <p>Price: {{course.price}}€</p>
+            <p><em>{{course.info}}</em></p>
+        </div>
+        <div>
+            <p>Teachers for this course:</p>
+            <ul>
+                {% for teacher in course.teacher.all %}
+                <li>
+                    <a href="{{ teacher.get_absolute_url }}">{{ teacher }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <p>Already studying:</p>
+            <ul>
+                {% for student in course.student_set.all %}
+                <li>{{ student }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         <div>
             <b>Join us!</b><br/>
             <a href="{% url 'student-create' %}">Apply to a course</a>
         </div>
-    </div>
+        </div>
+        <br/>
+    </section>
 
-    <br/>
-
-    <div><a href="{% url 'main' %}" >Back to the list of courses</a></div>
+    <nav>
+        <div><a href="{% url 'main' %}" >Back to the list of courses</a></div>
+    </nav>
 {% endblock %}

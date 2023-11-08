@@ -1,26 +1,30 @@
 {% extends 'schedule/base.html' %}
 
 {% block content %}
-    <p>Hi! 👋 Welcome to the site of our online HyperSchool!<br/>
-    Have a look below to find courses you might be interested in :)</p>
+    <section>
+        <p>Hi! 👋 Welcome to the site of our online HyperSchool!<br/>
+        Have a look below to find courses you might be interested in :)</p>
 
-    <div><a href="{% url 'signup' %}">Sign up</a></div>
-    <div><a href="{% url 'login' %}">Login</a></div>
-    <br/>
+        <div><a href="{% url 'signup' %}">Sign up</a></div>
+        <div><a href="{% url 'login' %}">Login</a></div>
+        <br/>
+    </section>
 
-    <form action={% url 'main' %} method="get">
-        {% csrf_token %}
-        <input name="q" type="search"/>
-        <button type="submit">search</button>
-    </form>
+    <section>
+        <form action={% url 'main' %} method="get">
+            {% csrf_token %}
+            <input name="q" type="search"/>
+            <button type="submit">search</button>
+        </form>
 
-    <p>{{num_courses}} courses</p>
+        <p>{{num_courses}} courses</p>
 
-    <ul>
-      {% for course in course_list %}
-      <li>
-        <a href="{{ course.get_absolute_url }}">{{ course.title }}</a> ({{course.list_teachers}})
-      </li>
-      {% endfor %}
-    </ul>
+        <ul>
+          {% for course in course_list %}
+          <li>
+            <a href="{{ course.get_absolute_url }}">{{ course.title }}</a> ({{course.list_teachers}})
+          </li>
+          {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
