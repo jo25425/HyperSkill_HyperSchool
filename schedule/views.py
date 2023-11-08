@@ -1,5 +1,9 @@
-from django.views import generic
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.views import generic
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 from schedule.forms import SearchForm, StudentForm
 from schedule.models import Course, Teacher
@@ -39,7 +43,20 @@ def student_create(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             student = form.save()
+            print(student)
             return redirect('student-create')
 
     form = StudentForm()
     return render(request, 'schedule/add_course.html', {'form': form})
+
+
+class SignupView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('main')
+    template_name = 'signup.html'
+
+
+class CustomLoginView(LoginView):
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('main')
+    template_name = 'login.html'
