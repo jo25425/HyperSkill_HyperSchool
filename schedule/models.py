@@ -11,6 +11,9 @@ class Teacher(models.Model):
     def __str__(self):
         return f"{self.name} {self.surname}"
 
+    def get_absolute_url(self):
+        return reverse('teacher-detail', kwargs={'pk': self.pk})
+
 
 class Course(models.Model):
     title = models.CharField(max_length=255)

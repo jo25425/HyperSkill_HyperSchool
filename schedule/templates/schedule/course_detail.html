@@ -1,13 +1,23 @@
 {% extends 'schedule/base.html' %}
 
 {% block content %}
-    <h3>{{course.title}}</h3>
+    <h2>{{course.title}}</h2>
 
     <div>
         <p>Duration: {{course.duration_months}} months</p>
         <p>Price: {{course.price}}€</p>
-        <p>Teacher: {{course.list_teachers}}</p>
+        <p><em>{{course.info}}</em></p>
+        <p>Teachers for this course:</p>
+        <ul>
+            {% for teacher in course.teacher.all %}
+            <li>
+                <a href="{{ teacher.get_absolute_url }}">{{ teacher }}</a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
-    <p>{{course.info}}</p>
+    <br/>
+
+    <div><a href="/schedule/main/" >Back to the list of courses</a></div>
 {% endblock %}

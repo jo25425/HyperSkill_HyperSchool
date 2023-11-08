@@ -1,7 +1,7 @@
 from django.views import generic
 
 from schedule.forms import SearchForm
-from schedule.models import Course
+from schedule.models import Course, Teacher
 
 
 class CourseListView(generic.ListView):
@@ -12,7 +12,7 @@ class CourseListView(generic.ListView):
         form = SearchForm(self.request.GET)
 
         if form.is_valid():
-            q = form.cleaned_data["q"]
+            q = form.cleaned_data['q']
             # print("Search request for query:", q)
             return Course.objects.filter(title__icontains=q)
 
@@ -21,9 +21,15 @@ class CourseListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseListView, self).get_context_data(**kwargs)
-        context["num_courses"] = context["course_list"].count()
+        context['num_courses'] = context['course_list'].count()
         return context
 
 
 class CourseDetailView(generic.DetailView):
     model = Course
+    template_name = 'schedule/course_detail.html'
+
+
+class TeacherDetailView(generic.DetailView):
+    model = Teacher
+    template_name = 'schedule/teacher_detail.html'
